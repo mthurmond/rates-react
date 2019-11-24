@@ -1,2 +1,2 @@
 # rates-react
-Rebuilt rates project in react
+Rebuilt rates project using react and react boostrap. 
