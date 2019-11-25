@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import logo from './logo.png';
+import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/Button";
@@ -10,26 +11,30 @@ function App() {
   return (
     <Container>
 
+    <Navbar         
+      collapseOnSelect
+      bg="dark"
+      variant="dark"
+      expand="lg"
+      className="mb-5"
+    >
+      <Navbar.Brand href="#home">
+        <img src={logo} alt="Chart icon" height="30"/>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+      
       <Nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark mb-5"
         activeKey="/home"
         onSelect={selectedKey => console.log(`selected ${selectedKey}`)}
       >
-        <Nav.Item>
-          <Nav.Link className="navbar-brand" href="/home">
-            <img src={logo} alt="Chart icon" height="30"/>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/home">Rate alerts</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">Profile</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2">Log out</Nav.Link>
-        </Nav.Item>
+        <Nav.Link href="/home">Rate alerts</Nav.Link>
+        <Nav.Link eventKey="link-1">Profile</Nav.Link>
+        <Nav.Link eventKey="link-2">Log out</Nav.Link>
       </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+
 
       <h1 className="header">Your rate alerts</h1>
 
