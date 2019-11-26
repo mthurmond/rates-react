@@ -36,7 +36,7 @@ function App() {
     </Navbar>
 
 
-      <h1 className="header">Your rate alerts</h1>
+      <h1>Your rate alerts</h1>
 
       <div className="mt-5">
         {/* Button opens modal to add a single lead */}
@@ -50,24 +50,24 @@ function App() {
 
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Area</th>
-            <th scope="col">Loan amount</th>
-            <th scope="col">Last email</th>
-            <th scope="col">Last open</th>
-            <th scope="col">Email alerts</th>
-            <th scope="col">Email frequency</th>
-            <th scope="col">Text alerts</th>
-            <th scope="col">Text frequency</th>
-            <th scope="col">End date</th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Area</th>
+            <th>Loan amount</th>
+            <th>Last email</th>
+            <th>Last open</th>
+            <th>Email alerts</th>
+            <th>Email frequency</th>
+            <th>Text alerts</th>
+            <th>Text frequency</th>
+            <th>End date</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <th scope="row">1</th>
+            <th>1</th>
             <td>Mark Smith</td>
             <td>mark@gmail.com</td>
             <td>Maysville, AZ</td>
@@ -82,7 +82,7 @@ function App() {
           </tr>
 
           <tr>
-            <th scope="row">2</th>
+            <th>2</th>
             <td>Jane Smith</td>
             <td>jane@gmail.com</td>
             <td>Phoenix, AZ</td>
