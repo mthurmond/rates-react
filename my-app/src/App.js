@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import MainNav from './pages/MainNav';
 import HomePage from './pages/HomePage';
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Container>
-
+      
         <Router>
           <MainNav />
           <Switch>
