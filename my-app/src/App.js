@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import MainNav from './pages/MainNav';
+import MainNav from './components/MainNav';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';

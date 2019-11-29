@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 
-export default function MainNav() {
+function MainNav() {
     return (
 
         <Navbar
@@ -23,21 +23,17 @@ export default function MainNav() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">            
 
-                <Nav
-                    activeKey=""
-                >
-                    <Nav.Link href="/home">
-                        <Link className="nav-link" to="/home">Rate Alerts</Link>
-                    </Nav.Link>
-                    <Nav.Link>
-                        <Link className="nav-link" to="/profile">Profile</Link>
-                    </Nav.Link>
-                    <Nav.Link>
-                        <Link className="nav-link" to="/login">Log out</Link>
-                    </Nav.Link>
+                <Nav activeKey="">
+                    {/* use nav.link "as" property to render as "Links" and not default "a" elements, otherwise console throws error, can't next "a" within "a". 
+                    then wrapped each link in anonymous function due to app error */}
+                    <Nav.Link href="/home" as={() => <Link className="nav-link" to="/home">Rate Alerts</Link>} />
+                    <Nav.Link as={() => <Link className="nav-link" to="/profile">Profile</Link>} />
+                    <Nav.Link as={() => <Link className="nav-link" to="/login">Log out</Link>} />
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
 
     )
 }
+
+export default MainNav;
