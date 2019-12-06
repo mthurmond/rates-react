@@ -2,6 +2,7 @@ import React from 'react';
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 
+//could import "Table" as "BootstrapTable" and then extend that to create my own, assuming I'm going to have my own standard formatting for each table. 
 function AlertsTable() {
     return (
         <div>
