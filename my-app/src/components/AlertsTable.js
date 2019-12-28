@@ -3,7 +3,42 @@ import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 
 //could import "Table" as "BootstrapTable" and then extend that to create my own, assuming I'm going to have my own standard formatting for each table. 
-function AlertsTable() {
+
+//after component mounts, get table data, then store it in state, then pull that info from state into render function so i can display it in the table. 
+class AlertsTable extends React.Component {
+
+constructor (props) {
+    super(props);
+    this.state = {
+        items: [
+            {id: '', first: '', last: '', email: ''}
+        ],
+    }
+}
+
+componentDidMount() {
+    const url = 'http://localhost:3010/home'
+    fetch(url).then(response => response.json()).then(items => {
+        this.setState({items})
+        }
+    )
+}
+
+render() {    
+    // store table row html in variable. map through each item (i.e. object) in state array. can use any variable name in place of "item" below. 
+    const tableRows = this.state.items.map(item => {
+        // each time function loops through, html for the row is returned
+        return (
+        <tr key={item.lead_id}>
+            <th>{item.lead_id}</th>
+            <td>{item.first}</td>
+            <td>{item.last}</td>
+            <td>{item.email}</td>
+        </tr>
+        )
+    }
+    )
+
     return (
         <div>
             <div className="mt-5">
@@ -15,61 +50,28 @@ function AlertsTable() {
             </div>
 
             <Table className="table mt-3 table-hover">
-
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
+                        <th>ID</th>
+                        <th>First</th>
+                        <th>Last</th>
                         <th>Email</th>
-                        <th>Area</th>
-                        <th>Loan amount</th>
-                        <th>Last email</th>
-                        <th>Last open</th>
-                        <th>Email alerts</th>
-                        <th>Email frequency</th>
-                        <th>Text alerts</th>
-                        <th>Text frequency</th>
-                        <th>End date</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Mark Smith</td>
-                        <td>mark@gmail.com</td>
-                        <td>Maysville, AZ</td>
-                        <td>$300,000</td>
-                        <td>11/1/2019</td>
-                        <td>10/20/2019</td>
-                        <td>On</td>
-                        <td>Weekly</td>
-                        <td>Off</td>
-                        <td>NA</td>
-                        <td>12/1/2019</td>
-                    </tr>
-
-                    <tr>
-                        <th>2</th>
-                        <td>Jane Smith</td>
-                        <td>jane@gmail.com</td>
-                        <td>Phoenix, AZ</td>
-                        <td>$250,000</td>
-                        <td>11/1/2019</td>
-                        <td>10/31/2019</td>
-                        <td>On</td>
-                        <td>Weekly</td>
-                        <td>On</td>
-                        <td>Daily</td>
-                        <td>NA</td>
-                    </tr>
-
+                    {tableRows}    
                 </tbody>
 
             </Table>
 
-        </div >
-    )
+        </div>
+
+    );
+
+    
+
+    }
 }
 
 export default AlertsTable;

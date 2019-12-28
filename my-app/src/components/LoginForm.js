@@ -9,16 +9,16 @@ function LoginForm() {
 
     //don't extend native prototype of javascript. if browsers later release update to native js implementation, could over-write their native implementation. general rule: don't overwrite anything you don't control. 
     //better idea, make a standalone function. ex: "function HashCode ()".
-    String.prototype.hashCode = function() {
-        var hash = 0, i, chr;
-        if (this.length === 0) return hash;
-        for (i = 0; i < this.length; i++) {
-          chr   = this.charCodeAt(i);
-          hash  = ((hash << 5) - hash) + chr;
-          hash |= 0; // Convert to 32bit integer
-        }
-        return hash;
-      };
+    // String.prototype.hashCode = function() {
+    //     var hash = 0, i, chr;
+    //     if (this.length === 0) return hash;
+    //     for (i = 0; i < this.length; i++) {
+    //       chr   = this.charCodeAt(i);
+    //       hash  = ((hash << 5) - hash) + chr;
+    //       hash |= 0; // Convert to 32bit integer
+    //     }
+    //     return hash;
+    //   };
     
       //may be able to get values from event object itself. console.log event object to check. 
     const handleSubmit = event => {
