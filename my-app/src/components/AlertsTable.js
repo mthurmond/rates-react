@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 import AddLeadButton from './AddLeadButton';
 
@@ -17,16 +16,28 @@ class AlertsTable extends React.Component {
         }
     }
 
-    componentDidMount() {
+    pullItems = () => {
         const url = 'http://localhost:3010/home'
         fetch(url).then(response => response.json()).then(items => {
             this.setState({ items })
-        }
+            }
         )
     }
 
+    addItemToState = (newItem) => {
+        this.setState(prevState => ({
+            items: prevState.items.concat([newItem])
+        }))
+    }
+
+    componentDidMount() {
+        this.pullItems()
+        console.log('hi')
+    }
+        
     render() {
         // store table row html in variable. map through each item (i.e. object) in state array. can use any variable name in place of "item" below. 
+        
         const tableRows = this.state.items.map(item => {
             // each time function loops through, html for the row is returned
             return (
@@ -44,10 +55,7 @@ class AlertsTable extends React.Component {
             <div>
                 <div className="mt-5">
                     {/* Button opens modal to add a single lead */}
-                    <AddLeadButton />
-
-                    {/* Button opens modal to import multiple leads  */}
-                    <Button variant="primary">Import leads</Button>
+                    <AddLeadButton addItemToState={this.addItemToState} pullItems={this.pullItems}/>
                 </div>
 
                 <Table className="table mt-3 table-hover">

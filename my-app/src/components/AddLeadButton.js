@@ -7,55 +7,60 @@ import ModalBody from 'react-bootstrap/ModalBody';
 import Form from 'react-bootstrap/Form';
 
 class AddLeadButton extends React.Component {
-
-    render() {
-
-        const handleSubmit = event => {
-            event.preventDefault()
-            let firstName = document.getElementById('first-name').value
-            let lastName = document.getElementById('last-name').value
-            let leadEmail = document.getElementById('lead-email').value
-            fetch('http://localhost:3010/home', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({first: firstName, last: lastName, email: leadEmail})
-                })
-            console.log("lead added")
-            }
-
-        const handleHide = () => {
-            // event.preventDefault()
-            console.log("hide")
-            let addLeadModal = document.getElementById('add-lead-modal')
-            // addLeadModal.toggleAttribute(hide: )
-            console.log(addLeadModal)
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false
         }
+    }
 
-        const handleClick = event => {
-            event.preventDefault()
-            console.log("click")
-            // let addLeadModal = document.getElementById('add-lead-modal')
+    handleClick = event => {         
+        this.setState({showModal: true})
+    }
+
+    handleHide = () => {
+        this.setState({showModal: false})
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        let firstName = document.getElementById('first-name').value
+        let lastName = document.getElementById('last-name').value
+        let leadEmail = document.getElementById('lead-email').value
+        //store new item object in single variable so we can easily add it to state further down
+        let newItem = {first: firstName, last: lastName, email: leadEmail}
+        fetch('http://localhost:3010/home', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newItem)
+            })
+            .then(this.setState({showModal: false}))
+            //append new item to state so it appears in table
+            .then(this.props.addItemToState(newItem))
             
-            // addLeadModal.setAttribute('show', 'true')
+            //repull all items from db so state is up to date and table shows new row
+            // .then(this.props.pullItems())
         }
+    
+    render() {
 
         return (
 
             <div>
 
-                <Button variant="primary" className="mr-2" data-toggle="modal" data-target="#add-lead-modal" onClick={handleClick}>Add lead</Button>
+                <Button variant="primary" className="mr-2" data-toggle="modal" data-target="#add-lead-modal" onClick={this.handleClick}>Add lead</Button>
 
-                <Modal size='lg' centered='true' scrollable='true' onHide={handleHide} id="add-lead-modal" show>
+                <Modal size='lg' centered='true' scrollable='true' onHide={this.handleHide} id="add-lead-modal" show={this.state.showModal}>
 
                     <ModalHeader closeButton='true' closeLabel='Close'>
                         <ModalTitle>Add lead</ModalTitle>
                     </ModalHeader>
 
                     <ModalBody>
-                        <Form onSubmit={handleSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Label>First name</Form.Label>
                                 <Form.Control type="text" id="first-name" placeholder="First name" />
