@@ -31,9 +31,19 @@ class AlertsTable extends React.Component {
         }))
     }
 
+    removeItemFromState = (itemToDelete) => {
+        let index = this.state.items.indexOf(itemToDelete)
+        if (index > -1) {
+            //clean this code up later, seems long-winded. investigate moving the splicing into the setState function, or eliminating the need for a setState function.  
+            this.state.items.splice(index, 1)
+            this.setState(prevState => ({
+                items: prevState.items
+            }))
+        }
+    }
+
     componentDidMount() {
         this.pullItems()
-        console.log('hi')
     }
         
     render() {
@@ -47,7 +57,7 @@ class AlertsTable extends React.Component {
                     <td>{item.first}</td>
                     <td>{item.last}</td>
                     <td>{item.email}</td>
-                    <td><DeleteLeadButton addItemToState={this.addItemToState}/></td>
+                    <td><DeleteLeadButton item={item} removeItemFromState={this.removeItemFromState}/></td>
                 </tr>
             )
         }

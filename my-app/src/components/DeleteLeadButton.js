@@ -24,18 +24,18 @@ class DeleteLeadButton extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        let newItem = {lead_id: 12}
+        let itemToDelete = {lead_id: this.props.item.lead_id}
         fetch('http://localhost:3010/home', {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newItem)
+            body: JSON.stringify(itemToDelete)
             })
             .then(this.setState({showModal: false}))
             //update code so it removes deleted item from state
-            // .then(this.props.addItemToState(newItem))
+            .then(this.props.removeItemFromState(this.props.item))
             
             //repull all items from db so state is up to date and table shows new row
             // .then(this.props.pullItems())
