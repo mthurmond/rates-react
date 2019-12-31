@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import AddLeadButton from './AddLeadButton';
+import DeleteLeadButton from './DeleteLeadButton';
 
 //could import "Table" as "BootstrapTable" and then extend that to create my own, assuming I'm going to have my own standard formatting for each table. 
 
@@ -46,6 +47,7 @@ class AlertsTable extends React.Component {
                     <td>{item.first}</td>
                     <td>{item.last}</td>
                     <td>{item.email}</td>
+                    <td><DeleteLeadButton addItemToState={this.addItemToState}/></td>
                 </tr>
             )
         }
@@ -65,6 +67,7 @@ class AlertsTable extends React.Component {
                             <th>First</th>
                             <th>Last</th>
                             <th>Email</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
