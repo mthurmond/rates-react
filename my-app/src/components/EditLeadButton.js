@@ -6,7 +6,7 @@ import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
 import Form from 'react-bootstrap/Form';
 
-class AddLeadButton extends React.Component {
+class EditLeadButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,23 +24,24 @@ class AddLeadButton extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        let leadID = this.props.item.lead_id
         let firstName = document.getElementById('first-name').value
         let lastName = document.getElementById('last-name').value
         let leadEmail = document.getElementById('lead-email').value
         //store new item object in single variable so we can easily add it to state further down
-        let newItem = {first: firstName, last: lastName, email: leadEmail}
+        let editedItem = {lead_id: leadID, first: firstName, last: lastName, email: leadEmail}
         //need to get response and store so i can setstate with a lead_id
         fetch('http://localhost:3010/home', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newItem)
+            body: JSON.stringify(editedItem)
             })
             .then(response => response.json())
             .then(data => {
-                this.props.addItemToState(data)
+                this.props.editItemInState(data, this.props.itemIndex)
             })
             .then(this.setState({showModal: false}))
             //repull all items from db so state is up to date and table shows new row
@@ -53,12 +54,12 @@ class AddLeadButton extends React.Component {
 
             <div>
 
-                <Button variant="primary" className="mr-2" data-toggle="modal" data-target="#add-lead-modal" onClick={this.handleClick}>Add lead</Button>
+                <Button variant="secondary" className="mr-2 edit-lead-button" data-toggle="modal" data-target="#edit-lead-modal" onClick={this.handleClick}>Edit</Button>
 
                 <Modal size='lg' centered='true' scrollable='true' onHide={this.handleHide} id="add-lead-modal" show={this.state.showModal}>
 
                     <ModalHeader closeButton='true' closeLabel='Close'>
-                        <ModalTitle>Add lead</ModalTitle>
+                        <ModalTitle>Edit lead</ModalTitle>
                     </ModalHeader>
 
                     <ModalBody>
@@ -78,7 +79,7 @@ class AddLeadButton extends React.Component {
                                 <Form.Control type="email" id="lead-email" placeholder="Enter email" />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit" className="mt-3">Add lead</Button>
+                            <Button variant="primary" type="submit" className="mt-3">Edit lead</Button>
 
                         </Form>
 
@@ -94,4 +95,4 @@ class AddLeadButton extends React.Component {
 
 }
 
-export default AddLeadButton;
+export default EditLeadButton;

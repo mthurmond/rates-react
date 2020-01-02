@@ -47,7 +47,7 @@ class DeleteLeadButton extends React.Component {
 
             <div>
 
-                <Button variant="danger" className="mr-2" data-toggle="modal" data-target="#delete-lead-modal" onClick={this.handleClick}>Delete</Button>
+                <Button variant="danger" className="mr-2 delete-lead-button" data-toggle="modal" data-target="#delete-lead-modal" onClick={this.handleClick}>Delete</Button>
 
                 <Modal size='lg' centered='true' scrollable='true' onHide={this.handleHide} id="delete-lead-modal" show={this.state.showModal}>
                     <ModalHeader closeButton='true' closeLabel='Close'>
