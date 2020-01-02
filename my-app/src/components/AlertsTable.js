@@ -25,9 +25,9 @@ class AlertsTable extends React.Component {
         )
     }
 
-    addItemToState = (newItem) => {
+    addItemToState = (data) => {
         this.setState(prevState => ({
-            items: prevState.items.concat([newItem])
+            items: prevState.items.concat(data)
         }))
     }
 

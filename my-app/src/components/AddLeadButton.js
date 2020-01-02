@@ -29,6 +29,7 @@ class AddLeadButton extends React.Component {
         let leadEmail = document.getElementById('lead-email').value
         //store new item object in single variable so we can easily add it to state further down
         let newItem = {first: firstName, last: lastName, email: leadEmail}
+        //need to get response and store so i can setstate with a lead_id
         fetch('http://localhost:3010/home', {
             method: 'POST',
             headers: {
@@ -37,10 +38,12 @@ class AddLeadButton extends React.Component {
             },
             body: JSON.stringify(newItem)
             })
-            .then(this.setState({showModal: false}))
-            //append new item to state so it appears in table
-            .then(this.props.addItemToState(newItem))
+            .then(response => response.json())
+            .then(data => {
+                this.props.addItemToState(data)
             
+            })
+            .then(this.setState({showModal: false}))
             //repull all items from db so state is up to date and table shows new row
             // .then(this.props.pullItems())
         }
