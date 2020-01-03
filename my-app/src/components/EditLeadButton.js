@@ -49,7 +49,6 @@ class EditLeadButton extends React.Component {
         }
     
     render() {
-
         return (
 
             <div>
@@ -66,19 +65,19 @@ class EditLeadButton extends React.Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Label>First name</Form.Label>
-                                <Form.Control type="text" id="first-name" placeholder="First name" />
+                                <Form.Control type="text" id="first-name" placeholder="First name" defaultValue={this.props.item.first}/>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Last name</Form.Label>
-                                <Form.Control type="text" id="last-name" placeholder="First name" />
+                                <Form.Control type="text" id="last-name" placeholder="First name" defaultValue={this.props.item.last}/>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" id="lead-email" placeholder="Enter email" />
+                                <Form.Control type="email" id="lead-email" placeholder="Enter email" defaultValue={this.props.item.email}/>
                             </Form.Group>
-
+                            
                             <Button variant="primary" type="submit" className="mt-3">Edit lead</Button>
 
                         </Form>

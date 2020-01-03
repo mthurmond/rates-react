@@ -6,8 +6,6 @@ export default function ProfilePage() {
 
         <>
 
-            <h1 className="mb-5">John Sanders</h1>
-
             <ProfileInfo />
 
         </>
