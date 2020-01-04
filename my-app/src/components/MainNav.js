@@ -28,7 +28,7 @@ function MainNav() {
                     then wrapped each link in anonymous function due to app error */}
                     <Nav.Link href="/home" as={() => <Link className="nav-link" to="/home">Rate Alerts</Link>} />
                     <Nav.Link as={() => <Link className="nav-link" to="/profile">Profile</Link>} />
-                    <Nav.Link as={() => <Link className="nav-link" to="/login">Log out</Link>} />
+                    <Nav.Link as={() => <Link className="nav-link" to="/login">Log in</Link>} />
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

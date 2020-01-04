@@ -2,10 +2,40 @@ import React from 'react';
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 
-function LoginForm() {
-    // get username and password from form
-    // log to console
-    // show success modal
+class LoginForm extends React.Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+        
+    handleSubmit = event => {
+        event.preventDefault();
+        let loginEmail = document.getElementById("login-email").value;
+        let loginPassword = document.getElementById("login-password").value;
+        let userLogIn = {
+            email: loginEmail,
+            password: loginPassword 
+        }
+        console.log(userLogIn)
+        fetch('http://localhost:3010/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userLogIn)
+            })
+        .then(response => response.json())
+        .then(item => {
+            console.log(item);
+            (item.length > 0) ? console.log('logged in') : console.log('invalid email/pw'); 
+        })
+    }
+
+    //compare login credentials to username and password. if one or more don't exactly match, say "Sorry, login and/or password didn't match our records." if both match, show "logged in" alert. 
+    //not sure if i should hash passwords now or later, come back to this. 
 
     //don't extend native prototype of javascript. if browsers later release update to native js implementation, could over-write their native implementation. general rule: don't overwrite anything you don't control. 
     //better idea, make a standalone function. ex: "function HashCode ()".
@@ -21,16 +51,11 @@ function LoginForm() {
     //   };
     
       //may be able to get values from event object itself. console.log event object to check. 
-    const handleSubmit = event => {
-        event.preventDefault();
-        let loginEmail = document.getElementById("login-email").value;
-        let loginStatus = true;
-        localStorage.setItem("login-email", loginEmail);
-        localStorage.setItem("login-status", loginStatus);
-        }
     
+    render() {
+
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
             <Form.Group>
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" id="login-email" placeholder="Enter email" />
@@ -43,10 +68,12 @@ function LoginForm() {
 
             <Button variant="primary" type="submit" className="mt-3">
                 Log In
-                </Button>
+            </Button>
 
         </Form>
     );
+    }
 }
+
 
 export default LoginForm;

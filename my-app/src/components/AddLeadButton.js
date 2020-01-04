@@ -40,7 +40,7 @@ class AddLeadButton extends React.Component {
             })
             .then(response => response.json())
             .then(data => {
-                this.props.addItemToState(data)
+                this.props.addItemToState(data) 
             })
             .then(this.setState({showModal: false}))
             //repull all items from db so state is up to date and table shows new row

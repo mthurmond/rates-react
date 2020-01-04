@@ -8,7 +8,7 @@ const LoginPage = () => {
 
         <>
 
-            <DismissibleAlert />
+            {/* <DismissibleAlert /> */}
 
             <h1 className="header mt-5 mb-3">Log In</h1>
 
