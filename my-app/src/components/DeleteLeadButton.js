@@ -54,7 +54,7 @@ class DeleteLeadButton extends React.Component {
                         <ModalTitle>Delete lead</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
-                        Are you sure you want to delete the lead: {this.props.item.first} {this.props.item.last}?
+                        Are you sure you want to delete "{this.props.item.first} {this.props.item.last}"?
                     </ModalBody>
                     <ModalFooter>
                         <Button variant="secondary" type="submit" onClick={this.handleHide} className="mt-3">Cancel</Button>

@@ -30,27 +30,9 @@ class LoginForm extends React.Component  {
         .then(response => response.json())
         .then(item => {
             console.log(item);
-            (item.length > 0) ? console.log('logged in') : console.log('invalid email/pw'); 
+            (item.length > 0) ? console.log('Logged in') : console.log('Invalid email or password'); 
         })
     }
-
-    //compare login credentials to username and password. if one or more don't exactly match, say "Sorry, login and/or password didn't match our records." if both match, show "logged in" alert. 
-    //not sure if i should hash passwords now or later, come back to this. 
-
-    //don't extend native prototype of javascript. if browsers later release update to native js implementation, could over-write their native implementation. general rule: don't overwrite anything you don't control. 
-    //better idea, make a standalone function. ex: "function HashCode ()".
-    // String.prototype.hashCode = function() {
-    //     var hash = 0, i, chr;
-    //     if (this.length === 0) return hash;
-    //     for (i = 0; i < this.length; i++) {
-    //       chr   = this.charCodeAt(i);
-    //       hash  = ((hash << 5) - hash) + chr;
-    //       hash |= 0; // Convert to 32bit integer
-    //     }
-    //     return hash;
-    //   };
-    
-      //may be able to get values from event object itself. console.log event object to check. 
     
     render() {
 

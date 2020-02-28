@@ -35,7 +35,6 @@ class AlertsTable extends React.Component {
     editItemInState = (itemToEdit, itemToEditIndex) => {
         //remove array wrapper that knex 'returning' command adds 
         let objectToEdit = itemToEdit[0]
-        console.log(itemToEditIndex)
         if (itemToEditIndex > -1) {
             //replaces existing item with newly edited item
             this.state.items.splice(itemToEditIndex, 1, objectToEdit)
